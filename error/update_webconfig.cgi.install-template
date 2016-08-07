@@ -1,0 +1,32 @@
+#!/usr/bin/perl -w
+use strict;
+use XML::Simple;
+use CGI;
+
+my $cgi = new CGI;
+
+# get the directory path to the script
+chomp(my ($cwd, $root) = <DATA>);
+close(DATA);
+
+my $xs_o = new XML::Simple(KeyAttr=>[],KeepRoot=>1);
+require File::Spec;
+my $webconfig_file=File::Spec->catfile($root, "web.config");
+my $ref = {};
+($ref = $xs_o->XMLin($webconfig_file)) if (-T $webconfig_file);
+$ref->{"configuration"}{"system.webServer"}{"httpErrors"}{"remove"} = [{subStatusCode=>-1,statusCode=>500},{subStatusCode=>-1,statusCode=>404}];
+$ref->{"configuration"}{"system.webServer"}{"httpErrors"}{"error"} = [	{path=>"[* request_path *]/http-error.cgi?500=1", prefixLanguageFilePath=>"", responseMode=>"ExecuteURL", statusCode=>500}, 
+									{path=>"[* request_path *]/http-error.cgi?404=1", prefixLanguageFilePath=>"", responseMode=>"ExecuteURL", statusCode=>404} ];
+open OUT , ">$webconfig_file" or die "unable to write to $webconfig_file";
+print OUT $xs_o->XMLout($ref, RootName=>undef, NoSort=>1);
+close OUT;
+print $cgi->redirect("/");
+my $success=1;
+END {
+	unlink $0 if $success;
+}
+
+
+__DATA__
+[* cwd *]
+[* web_root *]

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kolay Accounts</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="scripts/jquery-2.1.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/chronostrength-2.js"></script>
+    <script type="text/javascript" src="scripts/md5.min.js"></script>
+    <script type="text/javascript" src="scripts/keccak.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Julius+Sans+One&amp;text=Kolay%20Accounts"
+
+      rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="scripts/feedbackTool.js"></script>
+    <style>
+    .julius {
+      font-family: 'Julius Sans One', sans-serif !important;
+      font-weight: bold;
+      text-shadow: 2px 2px 2px #aaa;
+    }
+   
+   		
+   		#topContainer{
+   			background-image:url("images/colorbackground-2.png");
+   			background-size:cover;
+         height:auto;
+   			width:100%;
+   			
+   		}
+   		.btn-primary {background-color: #4CAD9E;}
+   		#topRow {
+   			margin-top:70px;
+   			text-align:center;	
+   		}
+   
+   		#topRow h1{
+   			font-size:200%;
+         text-align:center;
+   		}
+   		
+   		.bold{
+   			font-weight:bold;
+   		}
+   
+   		.marginTop{
+   			margin-top:30px;
+   		}
+   		
+   		.center{
+   			text-align:center;
+   		
+   		}
+   		
+   		.title {
+   			margin-top:100px;
+   			font-size:300%;
+   			
+   		}
+   		
+   		#footer{
+   			background-color: #B0D1FB;
+   			padding-top:70px;
+   			width:100%;
+   		}
+   		
+   		.marginBottom{
+   			margin-bottom:30px;
+   			
+   		}
+   		
+   		.appstoreImage{
+   			width:250px;
+   		
+   		}
+      #createLogin {display: none;
+			height:50px;      
+      }
+      #showStrength, #showMatch, #showValidation #showNameValidation {display: none; width: 100%; margin-top: 0.5em;}
+      .spaces {color:#993333; overflow: visible; display: inline;}
+      .highlight {color:#993333;}
+      #pwAlert {
+        margin-top: 15px;
+      }
+      #pwAlert > .alert {padding:8px;}
+      #bg {
+        position: fixed;
+        background: url(images/7prl-2.svg) no-repeat center center; 
+        background-size: 50% 50%;
+        z-index: -1;
+        opacity: 0.2;
+      }
+      .prl {
+        margin-top: 0px;
+        margin-left: 0em;
+        background-color: transparent;
+        position: relative;
+        left: 0px;
+        top: -0.1em;
+      }
+      .input-group-addon {
+    
+      }
+      .glyphicon-ok {
+        color: #bbb;
+      }
+      .cleared {color: #38916c !important;}
+      .lead {margin-top: 20px;}
+      #titleBrand {
+        height: 100px;
+        width: auto;
+   		 border: 5px ridge #4CAD9E;
+        border-radius: 40%;
+        background-color: #F8F8F8;
+        text-align: center;
+        font-size: 2em !important;
+        margin: 5 auto;
+        padding: 0.2em 1em 0.3em 1em;
+        overflow: hidden;
+        display: inline-block;
+        clear:both;
+      }
+      .navbar-brand{
+   		 font-size:1.5em;
+        color: #4CAD9E !important;
+        font-weight: bold;
+        text-align: center;
+        line-height: 100%;
+  		}
+      @media (max-width: 1221px) {
+        #titleBrand {
+          font-size: 1.5em !important;
+          height: 95px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #titleBrand {
+          border-radius: 40%;
+        }
+      }
+      @media screen and (max-width: 416px) {
+        #titleBrand {
+          border-radius: 30%;
+          font-size: 1.5em !important;
+          height: 120px;
+        }
+        #titleBrand .prl img {height:40px}
+      }
+      @media screen and (min-width: 417px) {
+        #titleBrand {
+          border-radius: 30%;
+          font-size: 1.5em !important;
+          height: 80px;
+        }
+        #titleBrand .prl img {height:40px}
+      }
+      .modal {
+        background-color: rgba(81, 175, 172,0.5);
+      }
+      .dollar {color: #4CAD9E; font-variant: small-caps; font-size: 92%; font-weight: normal;}
+      footer {text-align: center; background-color: transparent;}
+      .explanation {
+        width: 90%; 
+        background-color: rgba(81, 175, 172,0.5); 
+        margin-left: 5%; padding: 2em; 
+        border-radius: 1em;
+        color: #fff;
+        margin-bottom: 2em;
+        margin-top: 2em;
+      }
+      dt {margin-top: 15px; font-size: 1.2em;}
+      dd {margin-left: 10px;}
+      .response, .alert-dismissible {
+  margin-top: 10px !important;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.response {
+  max-width: 320px !important;
+}
+.alert-dismissible {
+  max-width: 320px; 
+  width: auto;
+  
+}
+.alert-success {
+  background-color: #4CAD9E;
+  color: #333;
+  border: 1px solid #4CAD9E;
+}
+      .btn-danger, .label-danger {background-color: #993333; border-color: transparent;}
+.azul-modal {
+  background-color: #4CAD9E !important;
+}
+
+   </style>
+  </head>
+  <body data-spy="scroll" data-target=".navbar-collapse">
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header"> <button class="navbar-toggle" data-toggle="collapse"
+
+            data-target=".navbar-collapse"> <span class="icon-bar"></span> <span
+
+              class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <div class="navbar-brand julius">Kolay <span class="prl"><img src="images/7prl-2.svg"
+
+                height="24px"></span> Account<span class="dollar">$</span></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="container contentContainer" id="topContainer">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3" id="topRow"> <span class="marginTop"
+
+            id="titleBrand"><a class="navbar-brand julius">Kolay <span class="prl"><img
+
+                  src="images/7prl-2.svg" height="45px"></span> Account<span class="dollar">$</span></a></span>
+          <div class="row">
+            <p class="lead">Your digital checkbook, made easy.</p>
+          </div>
+          <div id="results"> </div>
+          <p class="bold marginTop highlight">Start by Entering Account Info</p>
+          <form class="marginTop" action="php/new_account.php" method="post" id="saveForm">
+            <div class="form-group"> <label for="newAccountName">Account Name</label>
+              <div class="input-group"> <input name="newAccountName" id="newAccountName" class="form-control"
+
+                  placeholder="Name your account" value="" type="text">
+                <div class="input-group-addon" id="nameValidation"> 
+                	<span class="spaces help-block" id="showLetters">Please enter only letters, numbers, comma, dash, or period.</span>
+                   <span class="glyphicon glyphicon-ok"></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group"> <label for="newStartingBalance">Starting Balance</label>
+              <div class="input-group"> <input name="newStartingBalance" id="newStartingBalance" class="form-control" placeholder="2385.35" value="" type="text">
+                <div class="input-group-addon" id="balanceValidation">
+                	<span class="spaces help-block" id="showValidation">Please enter a valid currency amount.</span>
+                	<span class="glyphicon glyphicon-ok"></span> 
+                </div>
+              </div>
+            </div>
+            <input name="submit" id="createLogin" value="Create Account" class="form-control btn btn-success btn-lg marginTop" type="submit"> 
+           </form>
+        </div>
+      </div>
+      <div id="response"></div>
+      <div class="explanation">
+        <dl>
+          <dt>What next?</dt>
+          <dd>Once your first account is added, you can start adding new transactions as they occur.
+          You can also change your username, add another account, or add custom transaction 
+            categories to suit your needs.</dd>
+          <dt>How can I stayed logged in on my phone?</dt>
+          <dd>We are working on ways to make it even easier to use Kolay Accounts.
+				One issue users had using Kolay on mobile was the difficulty logging in every time the 
+				service was needed.  Users on iOS can avoid this issue by changing a setting in Safari:
+				<ul>
+					<li>Settings -> Safari -> AutoFill</li>
+					<li>Names and Passwords (on)</li>
+				</ul>
+				We are continuing to explore secure ways to make your experience better.        
+          </dd>
+          <dt>What can I do using Kolay Accounts on my desktop?</dt>
+          <dd>You can do everything you can do from your mobile device, plus you
+            can reconcile your accounts (with your online banking open in a
+            different window), view previously entered transactions, and easily
+            filter the visible transactions to view only the ones you want.
+            You can also customize your username and transaction categories.</dd>
+        </dl>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+        
+      });
+  $(".contentContainer").css("min-height",$(window).height());
+     
+     $(window).resize(function(){
+     $(".contentContainer").css("min-height",$(window).height());
+     });
+    
+       $("input#password").chronoStrength({
+    placeInto:"span.password-strength"
+  }); 
+
+    function validateBalance(sBalance) {
+        var filter = /^(-?\$?([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{1,2})?|\(\$?([1-9]\d{0,2}(,\d{3})*|[1-9]\d*|0|)(.\d{1,2})?\))$/;
+        if (filter.test(sBalance)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    function validateName(sName) {
+        var filter = /^([A-z ]{3,})([\.\-\, 0-9]*)$/;
+        if (filter.test(sName)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    var balanceOkay=0; var submitOkay=0; var nameOkay=0;
+     
+    $("#newAccountName").focus();
+    $("#newAccountName").on('input', function() {
+        var sName = $('#newAccountName').val();
+      console.log("Name Value: " + sName);
+      console.log("Name length: " + $.trim(sName).length);
+        if ($.trim(sName).length == 0) {
+          $("#nameValidation > .glyphicon-ok").removeClass("cleared");
+          $("#showLetters").fadeOut(1000); 
+          console.log("Hide name validation");
+          nameOkay = 0;
+          submitOkay = balanceOkay +nameOkay;
+        }
+        else if (validateName(sName)) {
+          $("#showLetters").fadeOut(1000); 
+          console.log("Hide name validation");
+          $("#nameValidation > .glyphicon-ok").addClass("cleared");
+          nameOkay = 1;
+          submitOkay = balanceOkay +nameOkay;
+    
+        }
+        else {
+          $("#nameValidation > .glyphicon-ok").removeClass("cleared");
+          $("#showLetters").fadeIn(1000); 
+          console.log("Show name validation");
+          nameOkay = 0;
+          submitOkay = balanceOkay +nameOkay;
+        }
+    });
+    $("#newStartingBalance").on('input', function() {
+        var sBalance = $('#newStartingBalance').val();
+        if ($.trim(sBalance).length == 0) {
+          $("#balanceValidation > .glyphicon-ok").removeClass("cleared");
+          $("#showValidation").fadeOut(1000); 
+          balanceOkay = 0;
+          submitOkay = balanceOkay +nameOkay;
+        }
+        else if (validateBalance(sBalance)) {
+          $("#showValidation").fadeOut(1000); 
+          $("#balanceValidation > .glyphicon-ok").addClass("cleared");
+          balanceOkay = 1;
+          submitOkay = balanceOkay +nameOkay;
+    
+        }
+        else {
+          $("#balanceValidation > .glyphicon-ok").removeClass("cleared");
+          $("#showValidation").fadeIn(1000); 
+          balanceOkay = 0;
+          submitOkay = balanceOkay +nameOkay;
+        }
+    });
+
+$("#showStronger").fadeOut(0);
+$("#showLetters").fadeOut(0);
+$("#showValidation").fadeOut(0);
+    
+    
+    $("input").on('input', function(){
+      console.log("Name: " + nameOkay);
+      console.log("Balance: " + balanceOkay);
+      console.log("Submit: " + submitOkay);
+      if (submitOkay==2){
+           $("#createLogin").fadeIn(1000); 
+           //$("#createLogin").focus();
+      }
+    });
+    
+      $("#saveForm").submit(function(){  
+          console.log($("#newAccountName").val());
+          console.log($("#newStartingBalance").val());
+      });
+
+    $("#sign-in").submit(function(e){
+        
+          $("#loginemailhash").val(md5($("#loginemail").val()));
+          $("#loginpwhash").val(keccak((md5($("#loginemail").val())).concat(keccak($("#loginpassword").val()))));
+          $("#date").val($.now());
+          console.log($("#loginemailhash").val());
+          console.log($("#loginpwhash").val());
+
+         
+      
+    });
+
+     
+    </script>
+    <div id="feedbackTool"></div>
+    <footer>
+      <div>© 2015 by PopUhler Media</div>
+      <div>For more info <a href="http://popuhler.com/code.htm">click here</a>
+        or email <a href="mailto:mr@popuhler.com">mr@popuhler.com</a></div>
+    </footer>
+  </body>
+</html>
