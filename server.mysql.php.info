@@ -1,0 +1,16 @@
+Database server
+
+Server: cluster37.shareddb.hi.local via TCP/IP
+Server type: MySQL
+Server version: 5.5.47 - MySQL Community Server (GPL)
+Protocol version: 10
+User: web208-kolaydb@10.0.51.2
+Server charset: UTF-8 Unicode (utf8)
+Web server
+
+Apache
+Database client version: libmysql - mysqlnd 5.0.11-dev - 20120503 - $Id: 15d5c781cfcad91193dceae1d2cdd127674ddb3e $
+PHP extension: mysqli Documentation
+phpMyAdmin
+
+Version information: 4.0.10.10
