@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html id="html">
+  <head id="head">
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <!--<base href="http://dev.popuhler.com/" target="_self">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title id="title">Kolay Accounts</title>
+    <script type="text/javascript" src="scripts/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="scripts/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/chronostrength-2.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/moment.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.daterangepicker.js"></script>
+    <script type="text/javascript" src="scripts/feedbackTool.js"></script>
+    <script type="text/javascript" src="scripts/numeral.js"></script>
+    
+    <!--<link type="text/css" href="css/kolay.css" rel="stylesheet">-->
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/daterangepicker.css" rel="stylesheet">
+    <link type="text/css" href="css/chosen.css" rel="stylesheet">
+    <link type="text/css" href="http://fonts.googleapis.com/css?family=Julius+Sans+One&amp;text=Kolay%20Accounts" rel="stylesheet">
+    <style>
+.julius {
+  font-family: 'Julius Sans One', sans-serif !important;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px #aaa;
+}
+
+div {
+	padding: 0; margin: 0;
+}
+
+.deposit {display: none; visibility: visible;}
+
+.label {text-align: center; padding-top: 5px; font-weight: normal;}
+.label {display: inline-block; font-size: 1em; overflow: visible;}
+
+@media (min-width: 768px) {
+  label {text-align: center;}
+}
+
+@media (max-width: 768px) {
+  .form-control {padding-left: 5%; padding-right: 5%;}
+  table {height: 30px;}
+  .response, .alert {}
+  .showOrNot {height: 1.95em; width: 100px;}
+  .label {float: none !important;}
+  .label-holder {width: 100%; text-align: center; margin: 1em auto -1em auto !important;}
+}
+      
+body {background-color: #fff;}  
+
+h1 {text-align: center;}
+
+.cleared {color: #38916c !important;}
+
+.spacer {
+  min-height: 1em;
+}
+
+#tr-date {width: 100%;}
+#cl-date {width: 100%;}
+
+.showOrNot {text-align: center; float:none !important; padding-right: 0.5em; cursor: pointer; }
+
+#showLess {display: none;}
+
+.navbar-brand{
+  font-size:1.5em;
+  color: #4CAD9E !important;
+  font-weight: bold;
+  text-align: center;
+  line-height: 100%;
+}
+
+#topRow{
+  margin-top: 60px;
+}
+      
+      #bg {
+          position: fixed;
+  background: url(images/colorbackground-2.png) center center; 
+  background-size: 100% 100%;
+  z-index: -1;
+  opacity: .9;
+
+      }
+      
+.prl {
+  margin-top: 5px;
+}
+
+#topContainer{
+  background-image:url("images/colorbackground-2.png");
+  background-size:cover;
+}
+
+.navbar-btn {border: 1px solid transparent; }
+
+
+#getAccount {margin-top: 0.74em;}
+
+.transparent-bg {background-color: transparent;}
+
+.btn-primary {background-color: #4CAD9E;}
+
+button a:hover {text-decoration: none;}
+
+button a {background-color: inherit !important;}
+
+.dollar {color: #4CAD9E; font-variant: small-caps; font-weight: normal;}
+
+.btn-danger, .label-danger {background-color: #993333; border-color: transparent;}
+
+#logout {margin-left: 0.5em;}
+
+.navbar-form {margin: 0 5px 0 5px; padding: 0; border: 1px solid black;}
+
+.btn-danger, .label-danger {background-color: #993333; border-color: transparent;}
+
+.azul-modal {
+  background-color: #4CAD9E !important;
+}      
+      
+      .response, .alert {
+  margin-top: 10px !important;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.response {
+  max-width: 320px !important;
+}
+
+.alert {
+  max-width: 320px; 
+  width: auto;
+  
+}
+
+.alert-success {
+  background-color: #4CAD9E;
+  color: #333;
+  border: 1px solid #4CAD9E;
+}
+
+#export {margin-top: 10px;}
+
+table {border:none;}
+
+.transactionTable {
+  width:90%;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  margin: 5%;
+  border-radius: 25px !important;
+  border: none;
+  overflow: visible;
+}
+
+.transactionTable td, .transactionTable th {
+  border: 1px solid black;
+}
+
+.transactionTable tr:first-child th {
+  border-top: 0;
+}
+
+.transactionTable tr:first-child th:last-child {
+  border-top-right-radius: 25px;
+}
+
+.transactionTable tr:first-child th:first-child {
+  border-top-left-radius: 25px;
+}
+
+.transactionTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.transactionTable tr:last-child td:first-child {
+  border-bottom-left-radius: 25px;
+}      
+
+.transactionTable tr:last-child td:last-child {
+  border-bottom-right-radius: 25px;
+}      
+
+.transactionTable tr td:first-child,
+table tr th:first-child {
+  border-left: 0;
+}
+
+.transactionTable tr td:last-child,
+.transactionTable tr th:last-child {
+  border-right: 0;
+}
+
+.transactionTable, .transactionTable td, .transactionTable th {
+  padding: 2.5px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(81, 175, 172,0.5) !important;
+  background-clip: padding-box;
+}
+
+td>.form-control {text-align: center !important;}
+td>.form-control>select>option {text-align: center !important;}
+
+.glyphicon-ok {
+	color: #bbb;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cleared {color: #38916c !important;}
+
+input[type='checkbox'] {
+	opacity: 50%;
+}
+
+.clearDate {
+	padding: 0;
+	background-color: transparent;
+}
+
+.num-range{
+  width: 100%;
+  float: left;
+}
+
+.form-group {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.checkbox {margin-top: 0; margin-bottom: 0; text-align: left; line-height: 1.1; padding-top: 0;} 
+
+.chosen-container-single .chosen-single {padding-top: 5px; padding-left: 20px; height: 34px; border-radius: 4px;}
+
+.chosen-container {height: 34px; overflow: visible;}
+
+.chosen-container-single .chosen-single div b {background-position-y: 6px !important;}
+
+.clear {height: 5px;}
+
+
+      
+#categories {bottom: 0px; position: fixed; right: 0px;}
+
+#categoryForm {overflow-y: scroll; overflow-x: hidden; height: 300px;}
+
+.categoryTable {width:90%; margin: auto;}
+
+.category_name {width: 190px;}
+
+.checkbox, th, .table>tbody>tr>td, td>input {margin: 0 auto;  text-align: center;}
+
+.checkbox {padding-left: 2em;}
+
+#new_category_row>td>div.checkbox {padding-top: 7px;height: 32px;}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table >tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {padding: 4px;}
+      
+      
+      
+   </style>
+  </head>
+  <body data-spy="scroll" data-target=".navbar-collapse">
+    <div id="bg" class="clear"></div>
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" arialabelledby="categoryModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-header azul-modal"> 
+            <button type="button" class="close" data-dismiss="modal"><span ariahidden="true">x</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="categoryModalLabel">Edit Categories</h4>
+          </div>
+          <div class="modal-body" id="categoryModalBody"> </div>
+          <div id="categoryModalErrors"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> 
+            <input class="btn btn-danger" id="update_categories" value="Update Categories" name="update_categories" type="submit">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" arialabelledby="myModalLabel"
+
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-header azul-modal"> <button type="button" class="close"
+
+              data-dismiss="modal"><span ariahidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add New Account</h4>
+          </div>
+          <div class="modal-body">
+            <form target="_self" id="createAccount" method="post"> <input class="form-control"
+
+                name="newAccountName" id="newAccountName" placeholder="Enter Account Name"
+
+                maxlength="18" type="text">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input class="form-control" name="newStartingBalance" id="newStartingBalance"
+
+                  placeholder="Enter Starting Balance" type="text"> </div>
+              <div id="modalErrors"></div>
+            </form>
+          </div>
+          <div class="modal-footer"> <button type="button" class="btn btn-default"
+
+              data-dismiss="modal">Cancel</button> <input class="btn btn-danger"
+
+              id="saveAccount" value="Save Account" type="submit"> </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" arialabelledby="nameModalLabel"
+
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-header azul-modal"> <button type="button" class="close"
+
+              data-dismiss="modal"><span ariahidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="nameModalLabel">Edit Name</h4>
+          </div>
+          <div class="modal-body">
+            <form target="_self" id="editName" method="post"> <input class="form-control"
+
+                name="new_name" id="new_name" placeholder="Enter New Name" maxlength="24"
+
+                type="text">
+              <div id="nameModalErrors"></div>
+            </form>
+          </div>
+          <div class="modal-footer"> <button type="button" class="btn btn-default"
+
+              data-dismiss="modal">Cancel</button> <input class="btn btn-danger"
+
+              id="saveName" value="Save Name" type="submit"> </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header"> <button class="navbar-toggle" data-toggle="collapse"
+
+            data-target=".navbar-collapse"> <span class="icon-bar"></span>
+            <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <div class="navbar-brand julius">Kolay <span class="prl"><img src="images/7prl-2.svg"
+
+                height="24px"></span> Account<span class="dollar">$</span></div>
+        </div>
+        <div class="collapse navbar-collapse">
+          <form class="navbar-form navbar-left" method="post" id="getAccount">
+            <div class="form-group"> <label class="hidden-xs hidden-sm" for="acct">Account</label>
+              <select class="form-control" id="acct" name="acct">
+              </select>
+            </div>
+          </form>
+          <div class="pull-right"> <button type="button" class="btn btn-danger navbar-btn"
+
+              id="logout"><a href="php/sign_in.php?logout=1" class="btn-danger">Log
+                Out</a></button> </div>
+          <div class="pull-right"> <button type="button" class="btn btn-primary navbar-btn"
+
+              id="nameSpot"><span id="name">-</span></button> </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="topContainer">
+      <div class="row" id="topRow">
+        <div id="payment-button" class="btn btn-danger col-xs-6 col-sm-2 col-sm-offset-4">Payment</div>
+        <div id="deposit-button" class="btn btn-default col-xs-6 col-sm-2">Deposit</div>
+      </div>
+      <div class="clearfix() "><br>
+      </div>
+      <form target="_self" id="submitTransaction" method="post">
+        <div class="row">
+          <div class="col-sm-3 col-sm-offset-1 form-group hidden-xs hideMobile">
+            <label class="col-xs-4 col-sm-12 control-label" for="tr-date">Trans.
+              Date</label>
+            <div class="col-xs-8 col-sm-12"><input required="required" class="form-control col-xs-12"
+
+                id="tr-date" name="transactionDate" type="date"></div>
+          </div>
+          <div class="col-sm-4 form-group payment"> <label class="col-xs-4 col-sm-12"
+
+              for="cat-p">Category</label>
+            <div class="col-xs-8 col-sm-12">
+              <select class="form-control" id="cat-p" name="categoryP">
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4 form-group deposit"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="cat-d">Category</label>
+            <div class="col-xs-8 col-sm-12">
+              <select class="form-control" id="cat-d" name="categoryD">
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3 form-group"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="amt">Amount</label>
+            <div class="col-xs-8 col-sm-12">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input class="form-control" id="amt" name="amount" required="required"
+
+                  placeholder="Amount" type="text"> </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 col-sm-offset-1 form-group hidden-xs hideMobile">
+            <label class="col-xs-4 col-sm-12 payment" for="cknum">Check #</label>
+            <div class="col-xs-8 col-sm-12"><input class="form-control payment"
+
+                id="cknum" name="checkNumber" type="number" placeholder="123"></div>
+          </div>
+          <div class="col-sm-4 form-group"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="desc">Description</label>
+            <div class="col-xs-8 col-sm-12"><input class="form-control" id="desc"
+
+                name="description" type="text"></div>
+          </div>
+          <div class="col-sm-3 form-group hidden-xs hideMobile"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="bal">Balance</label>
+            <div class="col-xs-8 col-sm-12">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input readonly="readonly" class="form-control" id="bal" name="currentBalance"
+
+                  type="text"> </div>
+            </div>
+          </div>
+        </div>
+        <input name="transType" id="transactionType" value="payment" type="hidden">
+        <input value="" name="account-id" id="account-id" type="hidden">
+        <div class="row spacer"></div>
+        <div class="row payment">
+          <div class=""> <input class="btn btn-danger col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5"
+
+              id="submit-p" value="Enter Payment" type="submit"> </div>
+        </div>
+        <div class="row deposit">
+          <div class=""> <input class="btn btn-danger col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5"
+
+              id="submit-d" value="Enter Deposit" type="submit"> </div>
+        </div>
+        <div class="visible-xs-block label-holder">
+          <div class="row showOrNot label label-danger" id="showMore">Show More</div>
+          <div class="row showOrNot label label-danger" id="showLess">Show Less</div>
+        </div>
+      </form>
+      <div class="row spacer"></div>
+      <div class="clear"></div>
+      <div id="response"></div>
+      <div id="previousTransactions"></div>
+      <!--<div class="row" id="previousTransactions"></div>-->
+      <div class="row hidden-xs hideMobile" id="export">
+      		<form action="/php/export.php" method="get">
+      			<input class="btn btn-danger col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5" value="Export" type="submit">
+      		</form>
+      </div><div class="row spacer"></div>
+    </div>
+    <div id="feedbackTool"></div>
+    <script>
+    var transactionType = "payment"; var currentBalance; var previousBalance;
+    var trRange = "2015-01-01 to "+ getDate();
+    var clRange = "0000-00-00 to " + getDate();
+    var firstLoad =1;
+    var checkFilter = 0;
+    var searchDesc = "";
+    var searchFocus = 0;
+    var amtFocus = 0;
+    var amt_search = "";
+    var categoriesUpdated = 0;
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
+  function getDate() {
+    var now = new Date();
+    var month = (now.getMonth() + 1);               
+    var day = now.getDate();
+    if(month < 10) 
+        month = "0" + month;
+    if(day < 10) 
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+  return today;
+        }
+      
+$(document).ready(function() {
+
+      getDate();
+    $('#tr-date').val(getDate()); 
+});
+
+$("#showMore").click(function(){
+  $("form").find(".hideMobile").removeClass("hidden-xs");  
+  $(this).hide();
+  $("#showLess").show();
+  $("#showLess").css("display", "inline-block");
+});
+      
+$("#showLess").click(function(){
+  $("form").find(".hideMobile").addClass("hidden-xs");  
+  $(this).hide();
+  $("#showMore").show();
+});
+      
+/*$("#export").click(function(){
+    alert ("Still working on this feature.  If you need assistance, you can email mr@popuhler.com and request a CSV of your accounts.  Just include your registered name and the desired accounts.");
+      
+  $.get("/php/export.php").done(function(data){
+      console.log("Transactions exported:" + data);
+});   
+});*/ 
+
+function isValidAccountName(newAccountName) {
+        var pattern = new RegExp(/^(([A-z\.\-\, \d]+)([\. ])?)+$/);
+        return pattern.test(newAccountName);
+    };  
+      
+function isValidBalance(newStartingBalance) {
+  var pattern = new RegExp(/^([\-]?(\d+)([\.]?\d{1,2})?)$/);
+  return pattern.test(newStartingBalance);
+};
+      
+function getBalance() {      
+  $.post("/php/get_balance.php", {acct:$("#acct").val()}).success(function(data){
+        $("#bal").val(data);
+    //$("#balance").val(data);
+        currentBalance = $("#bal").val();
+        currentBalance = parseFloat(currentBalance.replace(/,/g, ''));
+      //console.log("Current balance: " + currentBalance);
+        previousBalance = currentBalance;
+      //console.log("Previous balance: " + previousBalance);
+    });
+}
+
+function getCheckNumber() {      
+  $.post("/php/get_check_number.php", {acct:$("#acct").val()}).success(function(data){
+        var nextCheck = ++data;   
+        $("#cknum").attr("placeholder", nextCheck); 
+        console.log("Next Check Number: " + nextCheck);
+    });
+}
+
+function getCategories() {
+  $.post("/php/choose_deposit_category.php").success(function(data){
+    $("#cat-d").html(data);
+  });
+  $.post("/php/choose_payment_category.php").success(function(data){
+    $("#cat-p").html(data);
+  });
+  //console.log("Categories retrieved");
+}
+
+function createNewAccount() {
+    //console.log("Create New Account");
+    $('#myModal').modal('show');
+}      
+
+function checkForNewAccount() {
+  var acctValue = $("#acct").val();
+  var newAcct = "newAccount";
+  //console.log("Account value: " + acctValue);
+  if(acctValue == newAcct){
+    createNewAccount();
+    return 1;
+  } else if (acctValue == null){
+    //window.location = "php/sign_in.php?logout=1";
+  }
+  else {return 0;}
+}
+      
+function getAccounts(){      
+  $.get("/php/choose_account.php").done(function(data){
+      $("#acct").html(data);
+      checkForNewAccount();
+    
+      refreshTransactions();
+      getBalance();
+      getCheckNumber();
+
+  });      
+}      
+      
+  $("#saveAccount").click(function(e){
+    e.preventDefault();
+    if(!isValidAccountName($("#newAccountName").val())){
+      $("#modalErrors").append("Must only contain letters, spaces, period, or dash.<br>");
+    }
+    if(!isValidBalance($("#newStartingBalance").val())){
+      $("#modalErrors").append("Must only contain numbers with decimals up to two digits.<br>");
+    }
+    else {
+    //console.log("creating...");
+    //console.log("Starting balance: " + $("#newStartingBalance").val());
+    //alert ("Still working on this feature.  If you need assistance, you can email mr@popuhler.com and request a CSV of your accounts.  Just include your registered name and the desired accounts.");
+    $.post("/php/new_account.php",{newAccountName:$("#newAccountName").val(),newStartingBalance:$("#newStartingBalance").val()}).success(function(data){
+        console.log("New Account:" + data);
+        $("#acct").val(data);
+    });  
+    getAccounts();
+    $(this).attr('data-dismiss', 'modal');
+    }
+  });
+$("#saveName").click(function(e){
+    e.preventDefault();
+    var new_name = $("#new_name").val();
+    if(!isValidAccountName(new_name)){
+      $("#nameModalErrors").append("Must only contain letters, spaces, period, or dash.<br>");
+    }
+    else {
+    //console.log("creating new name...");
+    //alert ("Still working on this feature.  If you need assistance, you can email mr@popuhler.com and request a CSV of your accounts.  Just include your registered name and the desired accounts.");
+    $.post("/php/update_name.php",{new_name:new_name}).success(function(data){
+        console.log("New Name:" + data);
+      $("#response").html(data);
+    });  
+    getName();
+    $(this).attr('data-dismiss', 'modal');
+    }
+  });
+      $("#editName").submit(function(e){
+        e.preventDefault();
+        $("#saveName").click();
+      });
+
+      
+$("#payment-button").click(function(){
+    $(this).removeClass("btn-default");
+    $(this).addClass("btn-danger");
+    $("#deposit-button").removeClass("btn-danger");
+    $("#deposit-button").addClass("btn-default");
+    $(".payment").show();
+    $(".deposit").hide();
+    $("#transactionType").val("payment")  
+    transactionType = "payment";
+});
+
+
+$("#deposit-button").click(function(){
+    $(this).removeClass("btn-default");
+    $(this).addClass("btn-danger");
+    $("#payment-button").removeClass("btn-danger");
+    $("#payment-button").addClass("btn-default");
+    $(".deposit").show();
+    $(".payment").hide();
+    transactionType = "deposit";
+    $("#transactionType").val("deposit"); 
+    //console.log(transactionType);
+});
+
+$("#nameSpot").click(function(){
+  $("#nameModal").modal('show');
+});    
+
+      
+$("#acct").change(function() {
+  if(checkForNewAccount()==false) {
+  console.log("No new account");
+  getBalance();
+  $("#account-id").val($("#acct").val());
+  //console.log("Account id: " + $("#account-id").val());
+  refreshTransactions();
+  }
+});
+
+
+      
+
+
+function getName(){
+
+
+  $.post("/php/get_name.php").done(function(data){
+    $("#name").html(data);
+  });       
+ }
+$(document).on('hidden.bs.modal', '#nameModal', function () {
+  getName();
+});      
+$(document).on('hidden.bs.modal', '#myModal', function () {
+  getAccounts();
+});
+
+$.post("/php/get_user.php").success(function(data){
+		$("#response").html(data); 		
+		getAccounts();      
+		getName();
+		getCategories();
+}).error(function (data) {
+	window.location.assign('index.html');
+});
+ 		           
+
+ 
+ 		
+$("#amt").on('input', function() {
+    var amountValue=$.trim($(this).val());
+    amountValue = parseFloat(amountValue.replace(/,/g, ''));
+    
+	if (!isValidBalance($('#amt').val())) {
+	amountValue = 0;
+	$("#response").html('<div class="alert alert-warning alert-dismissible " role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Please enter a valid Amount</strong></div>');
+ getBalance();
+  }    
+ 
+    else if (transactionType == "payment"){
+      currentBalance = (parseFloat(previousBalance) - parseFloat(amountValue));
+      $("#response").html('');
+    }
+    else if (transactionType == "deposit"){
+      currentBalance = (parseFloat(previousBalance) + parseFloat(amountValue));
+		$("#response").html('');
+    }
+    else {
+      console.log("An error occurred.")
+      }
+      //console.log("Amount value = " + amountValue);
+      //console.log("Current Balance = " + currentBalance);
+      //console.log("Previous Balance = " + previousBalance);
+    $("#bal").val(numeral(currentBalance.toFixed(2)).format('0,0.00'));
+	$("#amount_search").val($("#amt").val());
+	 $("#amt").keyup(function(){
+    delay(function(){
+      searchFocus = 0;
+      amtFocus = 0;
+      updateWithFilters();
+    }, 500 );
+    });
+    
+});
+      
+function resizeBackground() {
+   $("#bg").height($(window).innerHeight());
+   $("#bg").width($(window).innerWidth());
+}
+
+$(document).ready(function(){
+  resizeBackground();
+});
+      
+$(window).resize(function(){
+  resizeBackground();
+});      
+function updateWithFilters(){
+
+  var recval = $("#rec-filter").val();
+  //console.log("Filter Value: " + recval);
+  var catFilter = $("#cat-all").val();
+  searchDesc = $("#description_search").val();
+  if ($("#check-filter").prop("checked")) {checkFilter = 1;} else {checkFilter = 0;}
+  amt_search = $("#amount_search").val();
+ refreshTransactions();
+    
+    console.log("Filter Changed");
+  
+  
+
+
+
+}
+      
+function pickTransactionRange(){
+      $("#transaction-range").dateRangePicker(
+      {
+      startDate: '2015-01-01',
+      endDate: getDate(),
+      autoClose: true,
+      shortcuts : 
+      {
+        'prev-days': [5,10,15],
+        'prev': ['week','month','year'],
+        'next-days':null,
+        'next':null
+      }
+    }).bind('datepicker-change',function(event,obj)
+      {
+          trRangeMin = obj.value.substr(0,10);
+          trRangeMax = obj.value.substr(14,10);
+        //console.log("Transaction Min Date: " + trRangeMin + " Transaction Max Date: " + trRangeMax);
+        //console.log("Trans - Changed");
+        updateWithFilters();
+      }).bind('datepicker-apply',function(event,obj)
+      {
+          trRangeMin = obj.value.substr(0,10);
+          trRangeMax = obj.value.substr(14,10);
+        //console.log("Transaction Min Date: " + trRangeMin + " Transaction Max Date: " + trRangeMax);
+        //console.log("Trans - Applied");
+        updateWithFilters();
+      })
+      .bind('datepicker-close',function(event,obj)
+      {
+        if(obj){  
+        trRangeMin = obj.value.substr(0,10);
+          trRangeMax = obj.value.substr(14,10);
+        console.log("Transaction Min Date: " + trRangeMin + " Transaction Max Date: " + trRangeMax);}
+        
+        //console.log("Trans - Closed");
+      });
+  $("#transaction-range").focus(function(){
+    $(this).data('dateRangePicker').clear();     
+  });
+}
+      
+function pickClearedRange(){
+      $("#cleared-range").dateRangePicker(
+      {
+      startDate: '2014-11-01',
+      endDate: getDate(),
+      autoClose: true,
+      shortcuts : 
+      {
+        'prev-days': [5,10,15],
+        'prev': ['week','month','year'],
+        'next-days':null,
+        'next':null
+      }
+    }).bind('datepicker-change',function(event,obj)
+    {
+        clRangeMin = obj.value.substr(0,10);
+        clRangeMax = obj.value.substr(14,10);
+        //console.log("Cleared Min Date: " + clRangeMin + " Cleared Max Date: " + clRangeMax);
+        //console.log("Cleared - Changed");
+        updateWithFilters();
+    }).bind('datepicker-apply',function(event,obj)
+    {
+        clRangeMin = obj.value.substr(0,10);
+        clRangeMax = obj.value.substr(14,10);
+        //console.log("Cleared Min Date: " + clRangeMin + " Cleared Max Date: " + clRangeMax);
+        //console.log("Cleared - Applied.");
+        updateWithFilters();
+    })
+    .bind('datepicker-close',function(event,obj)
+    {
+      if(obj){
+        clRangeMin = obj.value.substr(0,10);
+        clRangeMax = obj.value.substr(14,10);
+        console.log("Cleared Min Date: " + clRangeMin + " Cleared Max Date: " + clRangeMax);
+      }
+        //console.log("Cleared - Closed");
+    });
+    $("#cleared-range").focus(function(){
+      $(this).data('dateRangePicker').clear();     
+    });
+
+}
+   
+function clearAndReconcile(){
+      var cleared = [];
+      $(".clrbutton").click(function(){
+          //console.log("I'm here!");
+          var val = $(this).find(".cleared_id").val();
+          //console.log(val);
+          $(this).find(".glyphicon-ok").toggleClass("cleared");
+        if ($(this).find(".glyphicon-ok").hasClass("cleared")){
+          var val = $(this).find(".cleared_id").val();
+          //console.log("Transaction ID cleared: " +val);
+        } else { 
+        //console.log("Transaction ID uncleared: " +val);
+        }
+        $.post("/php/reconcile.php", {cleared:$(this).find(".cleared_id").val()}).done(function(data){
+          $("#response").html(data);
+        });
+
+      });
+    $(".clearDate").on('input', function(){
+      //console.log($(this).val());
+      //console.log($(this).next(".cleared_id").val());
+      $.post("/php/update_clear_date.php", {cleared:$(this).next(".cleared_id").val(), clear_date: $(this).val()}).done(function(data){
+      		$("#response").html(data);
+      	});
+    });
+      
+}
+      
+function refreshTransactions(){
+  if(firstLoad!=1){
+    trRange = $("#transaction-range").val();
+    clRange = $("#cleared-range").val();
+    searchDesc = $("#description_search").val();
+    amt_search = $("#amount_search").val();
+    var balance = currentBalance;
+    }
+  getCheckNumber();
+  var trRangeMin = trRange.substr(0,10); 
+  var trRangeMax = trRange.substr(14,10); 
+  var clRangeMin = clRange.substr(0,10); 
+  var clRangeMax = clRange.substr(14,10);
+  var balance = currentBalance;
+  if (checkFilter==1) {$("#check-filter").prop("checked", true);} else {$("#check-filter").prop("checked", false);}
+  console.log("Check Filter: " + checkFilter);
+  var catFilter = $("#cat-all").val();
+  if (catFilter<1 | catFilter== NaN | catFilter == undefined ){catFilter=0;}
+  console.log("Balance: " + balance);
+  console.log("Transaction Min Date: " + trRangeMin + " Transaction Max Date: " + trRangeMax);
+  console.log("Cleared Min Date: " + clRangeMin + " Cleared Max Date: " + clRangeMax);
+
+  var recval = $("#rec-filter").val(); 
+  if (recval<1 | recval== NaN | recval == undefined ){recval=0;}
+  //console.log("Filter Value: " + recval);
+  //console.log("Cat Filter: " + catFilter);
+  $.post("/php/get_previous_transactions.php", {amt_search:amt_search, searchDesc:searchDesc, acct:$("#acct").val(), checkFilter:checkFilter, catFilter:catFilter, balance:balance, recfilter:recval, trdate_min:trRangeMin, trdate_max:trRangeMax,cldate_min:clRangeMin, cldate_max:clRangeMax,}).done(function(data){
+      $("#previousTransactions").html(data);
+      if(firstLoad!=1){
+          $("#cleared-range").val(clRange);
+          $("#transaction-range").val(trRange);
+          $("#cat-all").val(catFilter);
+        $("#amount_search").val(amt_search);
+        //$("#balance").val(balance);
+          if (checkFilter==1) {$("#check-filter").prop("checked", true);} else {$("#check-filter").prop("checked", false);}
+        
+      }
+      firstLoad=0;
+      $("#rec-filter").val(recval);
+      $("#cat-all").addClass("chooser");
+      $("#cat-all").val(catFilter);
+      $("#description_search").val(searchDesc);
+      //$("#balance").val(balance);
+      if (checkFilter==1) {$("#check-filter").prop("checked", true);} else {$("#check-filter").prop("checked", false);}
+    clearAndReconcile();
+    pickTransactionRange();
+    pickClearedRange();
+    if (searchFocus==1){$("#description_search").focus();}
+    if (amtFocus==1){$("#amount_search").focus();} 
+    
+    $(".chooser").chosen();
+    $("#cat-all").change(function(){
+      cat_filter = $("#cat-all").val();
+      searchFocus = 0;
+      amtFocus = 0;
+      updateWithFilters();
+    });
+    $("#rec-filter").change(function(){
+      searchFocus = 0;
+      amtFocus = 0;
+      updateWithFilters();  
+    });
+    $("#check-filter").change(function(){
+      searchFocus = 0;
+      amtFocus = 0;
+      updateWithFilters();
+    });
+    $("#description_search").keyup(function(){
+    
+    delay(function(){
+      searchFocus = 1;
+      amtFocus = 0;
+      updateWithFilters();
+    }, 800 );
+      
+    });
+    $("#amount_search").keyup(function(){
+    delay(function(){
+      searchFocus = 0;
+      amtFocus = 1;
+      updateWithFilters();
+    }, 500 );
+    });
+    
+  });
+}
+      
+    
+var transactionDate = $('#tr-date').val();
+var amount = $('#amt').val(); 
+var categoryP_ID = $('#cat-p').val();
+
+var categoryD_ID = $('#cat-d').val();
+
+var description =  $('#desc').val();
+
+var currentBalance = $('#bal').val();
+
+var acct = $('#acct').val();
+
+var checkNumber = $('#cknum').val();
+
+var clearDate = $('#cl-date').val();
+
+function resetForm() {
+  $('#amt').val('');
+  $('#desc').val('');
+  $('#cknum').val('');
+  $('#cl-date').val('');
+  getBalance();
+}        
+  
+        
+      
+function submitTransactions(){
+
+var cleanBalance = numeral().unformat($('#bal').val());
+if ($('#desc').val()==''){
+	$("#response").html('<div class="alert alert-warning alert-dismissible " role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Please enter a valid Description</strong></div>');
+
+}
+else	if (isValidBalance($('#amt').val()) && $('#amt').val()>0 ) {
+		$.post("/php/submit_transaction.php", {categoryP_ID: $('#cat-p').val(), categoryP:$('#cat-p option:selected').text(), categoryD_ID: $('#cat-d').val(), categoryD:$('#cat-d option:selected').text(), transType: $('#transactionType').val(), acct:$('#acct').val(), transactionDate: $('#tr-date').val(), amount: $('#amt').val(), description:$('#desc').val(), currentBalance: cleanBalance, checkNumber: $('#cknum').val(), clearDate: $('#cl-date').val()}).success(function(data){
+   		 	$("#response").html(data);
+    		refreshTransactions();
+    		resetForm();
+  		});
+	} else {
+	$("#response").html('<div class="alert alert-warning alert-dismissible " role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Please enter a valid Amount</strong></div>');
+  }
+}
+                                                                   
+$("#submitTransaction").submit(function(e){
+  e.preventDefault();
+  submitTransactions();
+  
+});   
+      
+$('#myModal').on('shown.bs.modal', function () {
+  $('#newAccountName').focus();
+});
+
+$('#nameModal').on('shown.bs.modal', function () {
+  $('#new_name').focus();
+});
+var hideChange=[];
+var changeValue=[];
+   function getCategoryList() {
+    $.post("/php/get_category_list.php").success(function(data){
+          $("#categoryModalBody").html(data);
+          $('input[type="checkbox"]').click(function () {
+              $(this).prop("checked") ? $(this).val("1") : $(this).val("0")
+              var rowid = $(this).closest('tr').attr('id');
+              var category_id = rowid.substr(8);
+              //console.log(rowid + " " + category_id);
+              
+              hideChange.push(category_id); 
+              changeValue.push(this.value);
+
+              //console.log(hideChange);
+          });
+      
+        });
+    
+    }
+    
+    
+    function updateCategories() {
+      //console.log("Show Category Modal");
+      $('#categoryModal').modal('show');
+      getCategoryList();
+    }   
+      
+    $('#cat-d').change(function(){
+      if ($("#cat-d option:selected").val()=="newCategory"){
+        //console.log("Show Category Modal from Deposit Category List");
+        updateCategories();
+      } 
+      else {
+      //console.log("Category chosen from Deposit Category List");
+      }
+    });
+    $('#cat-p').change(function(){
+      if ($("#cat-p option:selected").val()=="newCategory"){
+        //console.log("Show Category Modal from Payment Category List");
+        updateCategories();
+      } 
+      else {
+      //console.log("Category chosen from Deposit Category List");
+      }
+    });      
+      
+    function validateName(cn) {
+      filter = /^([A-z\.\-\, ]+)$/;
+      if (filter.test(cn)) {
+          return true;
+      }
+      else {
+          return false;
+      }
+    }
+    function checkForValidCategoryData() {
+      $("#categoryModalErrors").html("");
+      var cn = $('#category_name').val();
+      var cnLength = $('#category_name').val().length;
+      var pc = $('#new_paymentCategory').val();
+      var dc = $('#new_depositCategory').val();
+      //console.log(cn + pc + dc);
+      if (cn!=""){
+        if(cnLength<3){$("#categoryModalErrors").html("Please enter your category name."); return false;}
+        if (pc + dc =="0"){$("#categoryModalErrors").append("Please choose a category type."); return false;}
+        if (!validateName(cn)){$("#categoryModalErrors").append("Please enter a valid name, with only letters and forward slashes."); return false;}
+        else {return true; 
+        //console.log("Valid name and category choices");
+        }
+      }
+    }
+    function clearCategoryForm(){
+      $('#category_name').val("");
+      $('#new_paymentCategory').val("0");
+      $('#new_depositCategory').val("0");
+    }
+      
+      $(".hide_category").change(function(index){
+        var rowid = $(this).closest('tr').attr('id');
+        var category_id = rowid.substr(8);
+        //console.log(rowid + " " + category_id);
+        //hideChange.push(rowid + " " + category_id);  
+      
+      });      
+      
+    $( document ).ajaxComplete(function( event,request, settings ) {
+      if ( settings.url === "/php/hide_category.php") {
+        getCategories();
+        $( document ).ajaxComplete(function( event,request, settings ) {
+          if (settings.url === "/php/choose_deposit_category.php" || settings.url === "/php/choose_payment_category.php") {
+	         categoriesUpdated = 1;
+          	//console.log("Categories updated, line 1065.");
+          	
+          }
+        });
+      }
+    });  
+      
+    $('#update_categories').click(function(e){
+      e.preventDefault();
+      categoriesUpdated = 0;
+      if (checkForValidCategoryData()==true){
+        //console.log("Valid new category");
+        $.post("/php/new_category.php",{update_categories:$("#update_categories").val(),new_name:$("#category_name").val(),hide_category:$("#new_hideCategory").val(),payment_category:$("#new_paymentCategory").val(),deposit_category:$("#new_depositCategory").val()}).success(function(data){
+          $("#response").html(data);
+          if ($("#categoryModalErrors").val()==""){
+            clearCategoryForm();
+            // $('#categoryModal').modal('hide');
+          }
+        });
+      }
+      //console.log("Hide change length: " + hideChange.length);
+      for (var i=0;i<hideChange.length;i++){
+        var catChangedID = hideChange[i];
+        var catChangedValue = changeValue[i];
+        //console.log(catChangedID + ' ' + catChangedValue);
+        $.ajax({
+          type:"POST",
+          url:"/php/hide_category.php",
+          data:{category_id: catChangedID, hide:catChangedValue},
+          async:true
+        }).success(function(data){
+          $("#response").html(data);
+        });
+        //console.log(hideChange[i] + " Hide category " + changeValue[i]);
+        
+      }
+      		hideChange=[];				
+			   function checkCatUpdate(){
+					if (categoriesUpdated == 0) {
+						setTimeout(function(){
+						//console.log("Waiting..."); 
+						checkCatUpdate();
+						},3000);
+						return false;
+			   		} else {
+			   			//console.log("categoriesUpdated, line 1108");
+			  			$("#response").html('<div class="alert alert-success alert-dismissible " role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Categories Updated</strong></div>');
+						categoriesUpdated = 0;						
+						//console.log("CA Status: " + categoriesUpdated);
+						return true;
+			   		}
+			   	}
+			   	checkCatUpdate();
+				//console.log("CA Status: " + categoriesUpdated);     		
+
+      $('#categoryModal').modal('hide');
+    });
+    $('#categoryModal').on('shown.bs.modal', function () {
+      $('#categoryName').focus();
+    });  
+    $("#categoryModal").on('hidden.bs.modal', function () {
+       getCategories();
+      //console.log("Categories retrieved after modal close");
+    });
+
+  </script>
+  </body>
+</html>
