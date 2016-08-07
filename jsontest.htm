@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html id="html">
+  <head id="head">
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <!--<base href="http://dev.popuhler.com/" target="_self">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title id="title">Kolay Accounts</title>
+    <script type="text/javascript" src="scripts/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="scripts/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/chronostrength-2.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/moment.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.daterangepicker.js"></script>
+    <script type="text/javascript" src="scripts/feedbackTool.js"></script>
+    <script type="text/javascript" src="scripts/numeral.js"></script>
+    
+    <!--<link type="text/css" href="css/kolay.css" rel="stylesheet">-->
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/daterangepicker.css" rel="stylesheet">
+    <link type="text/css" href="css/chosen.css" rel="stylesheet">
+    <link type="text/css" href="http://fonts.googleapis.com/css?family=Julius+Sans+One&amp;text=Kolay%20Accounts" rel="stylesheet">
+    <style>
+.julius {
+  font-family: 'Julius Sans One', sans-serif !important;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px #aaa;
+}
+
+div {
+	padding: 0; margin: 0;
+}
+
+.deposit {display: none; visibility: visible;}
+
+.label {text-align: center; padding-top: 5px; font-weight: normal;}
+.label {display: inline-block; font-size: 1em; overflow: visible;}
+
+@media (min-width: 768px) {
+  label {text-align: center;}
+}
+
+@media (max-width: 768px) {
+  .form-control {padding-left: 5%; padding-right: 5%;}
+  table {height: 30px;}
+  .response, .alert {}
+  .showOrNot {height: 1.95em; width: 100px;}
+  .label {float: none !important;}
+  .label-holder {width: 100%; text-align: center; margin: 1em auto -1em auto !important;}
+}
+      
+body {background-color: #fff;}  
+
+h1 {text-align: center;}
+
+.cleared {color: #38916c !important;}
+
+.spacer {
+  min-height: 1em;
+}
+
+#tr-date {width: 100%;}
+#cl-date {width: 100%;}
+
+.showOrNot {text-align: center; float:none !important; padding-right: 0.5em; cursor: pointer; }
+
+#showLess {display: none;}
+
+.navbar-brand{
+  font-size:1.5em;
+  color: #4CAD9E !important;
+  font-weight: bold;
+  text-align: center;
+  line-height: 100%;
+}
+
+#topRow{
+  margin-top: 60px;
+}
+      
+      #bg {
+          position: fixed;
+  background: url(images/colorbackground-2.png) center center; 
+  background-size: 100% 100%;
+  z-index: -1;
+  opacity: .9;
+
+      }
+      
+.prl {
+  margin-top: 5px;
+}
+
+#topContainer{
+  background-image:url("images/colorbackground-2.png");
+  background-size:cover;
+}
+
+.navbar-btn {border: 1px solid transparent; }
+
+
+#getAccount {margin-top: 0.74em;}
+
+.transparent-bg {background-color: transparent;}
+
+.btn-primary {background-color: #4CAD9E;}
+
+button a:hover {text-decoration: none;}
+
+button a {background-color: inherit !important;}
+
+.dollar {color: #4CAD9E; font-variant: small-caps; font-weight: normal;}
+
+.btn-danger, .label-danger {background-color: #993333; border-color: transparent;}
+
+#logout {margin-left: 0.5em;}
+
+.navbar-form {margin: 0 5px 0 5px; padding: 0; border: 1px solid black;}
+
+.btn-danger, .label-danger {background-color: #993333; border-color: transparent;}
+
+.azul-modal {
+  background-color: #4CAD9E !important;
+}      
+      
+      .response, .alert {
+  margin-top: 10px !important;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.response {
+  max-width: 320px !important;
+}
+
+.alert {
+  max-width: 320px; 
+  width: auto;
+  
+}
+
+.alert-success {
+  background-color: #4CAD9E;
+  color: #333;
+  border: 1px solid #4CAD9E;
+}
+
+#export {margin-top: 10px;}
+
+table {border:none;}
+
+.transactionTable {
+  width:90%;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  margin: 5%;
+  border-radius: 25px !important;
+  border: none;
+  overflow: visible;
+}
+
+.transactionTable td, .transactionTable th {
+  border: 1px solid black;
+}
+
+.transactionTable tr:first-child th {
+  border-top: 0;
+}
+
+.transactionTable tr:first-child th:last-child {
+  border-top-right-radius: 25px;
+}
+
+.transactionTable tr:first-child th:first-child {
+  border-top-left-radius: 25px;
+}
+
+.transactionTable tr:last-child td {
+  border-bottom: 0;
+}
+
+.transactionTable tr:last-child td:first-child {
+  border-bottom-left-radius: 25px;
+}      
+
+.transactionTable tr:last-child td:last-child {
+  border-bottom-right-radius: 25px;
+}      
+
+.transactionTable tr td:first-child,
+table tr th:first-child {
+  border-left: 0;
+}
+
+.transactionTable tr td:last-child,
+.transactionTable tr th:last-child {
+  border-right: 0;
+}
+
+.transactionTable, .transactionTable td, .transactionTable th {
+  padding: 2.5px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(81, 175, 172,0.5) !important;
+  background-clip: padding-box;
+}
+
+td>.form-control {text-align: center !important;}
+td>.form-control>select>option {text-align: center !important;}
+
+.glyphicon-ok {
+	color: #bbb;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cleared {color: #38916c !important;}
+
+input[type='checkbox'] {
+	opacity: 50%;
+}
+
+.clearDate {
+	padding: 0;
+	background-color: transparent;
+}
+
+.num-range{
+  width: 100%;
+  float: left;
+}
+
+.form-group {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.checkbox {margin-top: 0; margin-bottom: 0; text-align: left; line-height: 1.1; padding-top: 0;} 
+
+.chosen-container-single .chosen-single {padding-top: 5px; padding-left: 20px; height: 34px; border-radius: 4px;}
+
+.chosen-container {height: 34px; overflow: visible;}
+
+.chosen-container-single .chosen-single div b {background-position-y: 6px !important;}
+
+.clear {height: 5px;}
+
+
+      
+#categories {bottom: 0px; position: fixed; right: 0px;}
+
+#categoryForm {overflow-y: scroll; overflow-x: hidden; height: 300px;}
+
+.categoryTable {width:90%; margin: auto;}
+
+.category_name {width: 190px;}
+
+.checkbox, th, .table>tbody>tr>td, td>input {margin: 0 auto;  text-align: center;}
+
+.checkbox {padding-left: 2em;}
+
+#new_category_row>td>div.checkbox {padding-top: 7px;height: 32px;}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table >tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {padding: 4px;}
+      
+      
+      
+   </style>
+  </head>
+  <body data-spy="scroll" data-target=".navbar-collapse">
+    <div id="bg" class="clear"></div>
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" arialabelledby="categoryModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-header azul-modal"> 
+            <button type="button" class="close" data-dismiss="modal"><span ariahidden="true">x</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="categoryModalLabel">Edit Categories</h4>
+          </div>
+          <div class="modal-body" id="categoryModalBody"> </div>
+          <div id="categoryModalErrors"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> 
+            <input class="btn btn-danger" id="update_categories" value="Update Categories" name="update_categories" type="submit">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" arialabelledby="myModalLabel"
+
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-header azul-modal"> <button type="button" class="close"
+
+              data-dismiss="modal"><span ariahidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add New Account</h4>
+          </div>
+          <div class="modal-body">
+            <form target="_self" id="createAccount" method="post"> <input class="form-control"
+
+                name="newAccountName" id="newAccountName" placeholder="Enter Account Name"
+
+                maxlength="18" type="text">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input class="form-control" name="newStartingBalance" id="newStartingBalance"
+
+                  placeholder="Enter Starting Balance" type="text"> </div>
+              <div id="modalErrors"></div>
+            </form>
+          </div>
+          <div class="modal-footer"> <button type="button" class="btn btn-default"
+
+              data-dismiss="modal">Cancel</button> <input class="btn btn-danger"
+
+              id="saveAccount" value="Save Account" type="submit"> </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" arialabelledby="nameModalLabel"
+
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-header azul-modal"> <button type="button" class="close"
+
+              data-dismiss="modal"><span ariahidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="nameModalLabel">Edit Name</h4>
+          </div>
+          <div class="modal-body">
+            <form target="_self" id="editName" method="post"> <input class="form-control"
+
+                name="new_name" id="new_name" placeholder="Enter New Name" maxlength="24"
+
+                type="text">
+              <div id="nameModalErrors"></div>
+            </form>
+          </div>
+          <div class="modal-footer"> <button type="button" class="btn btn-default"
+
+              data-dismiss="modal">Cancel</button> <input class="btn btn-danger"
+
+              id="saveName" value="Save Name" type="submit"> </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header"> <button class="navbar-toggle" data-toggle="collapse"
+
+            data-target=".navbar-collapse"> <span class="icon-bar"></span>
+            <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <div class="navbar-brand julius">Kolay <span class="prl"><img src="images/7prl-2.svg"
+
+                height="24px"></span> Account<span class="dollar">$</span></div>
+        </div>
+        <div class="collapse navbar-collapse">
+          <form class="navbar-form navbar-left" method="post" id="getAccount">
+            <div class="form-group"> <label class="hidden-xs hidden-sm" for="acct">Account</label>
+              <select class="form-control" id="acct" name="acct">
+              </select>
+            </div>
+          </form>
+          <div class="pull-right"> <button type="button" class="btn btn-danger navbar-btn"
+
+              id="logout"><a href="php/sign_in.php?logout=1" class="btn-danger">Log
+                Out</a></button> </div>
+          <div class="pull-right"> <button type="button" class="btn btn-primary navbar-btn" data-toggle='modal' data-target='#nameModal'
+
+              id="nameSpot"><span id="name">-</span></button> </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" id="topContainer">
+      <div class="row" id="topRow">
+        <div id="payment-button" class="btn btn-danger col-xs-6 col-sm-2 col-sm-offset-4">Payment</div>
+        <div id="deposit-button" class="btn btn-default col-xs-6 col-sm-2">Deposit</div>
+      </div>
+      <div class="clearfix() "><br>
+      </div>
+      <form target="_self" id="submitTransaction" method="post">
+        <div class="row">
+          <div class="col-sm-3 col-sm-offset-1 form-group hidden-xs hideMobile">
+            <label class="col-xs-4 col-sm-12 control-label" for="tr-date">Trans.
+              Date</label>
+            <div class="col-xs-8 col-sm-12"><input required="required" class="form-control col-xs-12"
+
+                id="tr-date" name="transactionDate" type="date"></div>
+          </div>
+          <div class="col-sm-4 form-group payment"> <label class="col-xs-4 col-sm-12"
+
+              for="cat-p">Category</label>
+            <div class="col-xs-8 col-sm-12">
+              <select class="form-control" id="cat-p" name="categoryP">
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4 form-group deposit"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="cat-d">Category</label>
+            <div class="col-xs-8 col-sm-12">
+              <select class="form-control" id="cat-d" name="categoryD">
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3 form-group"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="amt">Amount</label>
+            <div class="col-xs-8 col-sm-12">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input class="form-control" id="amt" name="amount" required="required"
+
+                  placeholder="Amount" type="text"> </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 col-sm-offset-1 form-group hidden-xs hideMobile">
+            <label class="col-xs-4 col-sm-12 payment" for="cknum">Check #</label>
+            <div class="col-xs-8 col-sm-12"><input class="form-control payment"
+
+                id="cknum" name="checkNumber" type="number" placeholder="123"></div>
+          </div>
+          <div class="col-sm-4 form-group"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="desc">Description</label>
+            <div class="col-xs-8 col-sm-12"><input class="form-control" id="desc"
+
+                name="description" type="text"></div>
+          </div>
+          <div class="col-sm-3 form-group hidden-xs hideMobile"> <label class="col-xs-4 col-sm-12 control-label"
+
+              for="bal">Balance</label>
+            <div class="col-xs-8 col-sm-12">
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <input readonly="readonly" class="form-control" id="bal" name="currentBalance"
+
+                  type="text"> </div>
+            </div>
+          </div>
+        </div>
+        <input name="transType" id="transactionType" value="payment" type="hidden">
+        <input value="" name="account-id" id="account-id" type="hidden">
+        <div class="row spacer"></div>
+        <div class="row payment">
+          <div class=""> <input class="btn btn-danger col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5"
+
+              id="submit-p" value="Enter Payment" type="submit"> </div>
+        </div>
+        <div class="row deposit">
+          <div class=""> <input class="btn btn-danger col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5"
+
+              id="submit-d" value="Enter Deposit" type="submit"> </div>
+        </div>
+        <div class="visible-xs-block label-holder">
+          <div class="row showOrNot label label-danger" id="showMore">Show More</div>
+          <div class="row showOrNot label label-danger" id="showLess">Show Less</div>
+        </div>
+      </form>
+      <div class="row spacer"></div>
+      <div class="clear"></div>
+      <div id="response"></div>
+      <div id="previousTransactions"><div class="row spacer">Filtered Sum:  <input class="form-control" id="balance" disabled="disabled" value="SUM"></div>
+<div class="row visible-sm visible-md visible-lg"><table class="transactionTable" id="transactionList"> <tr> <th>Transaction Date</th><th>Check#</th> <th>Clear Date</th>  <th>Category</th> <th>Description</th><th>Amount</th>  <th>Cleared</th> </tr>
+<tr><td><input class="form-control date-range" id="transaction-range" placeholder="Filter Dates"></td>
+<td><div class="checkbox"><label><input type="checkbox" id="check-filter">Checks<br>only</label></div></td>
+<td><input class="form-control date-range" id="cleared-range" placeholder="Filter Dates" ></td>
+<td>
+			<select class="form-control" id="cat-all" name="category-all" data-placeholder="Select Categories...">
+						<option value="0" selected>All</option>
+			</select>
+</td>
+
+<td><input class="form-control search" type="search" id="description_search" placeholder="Search"></td>
+<td><input class="form-control num-range" type="number" min="-100000" max="100000" id="amount_search" placeholder="Search"></td>
+<td><select class="form-control" id="rec-filter" name="recfilter">
+						<option value="0">Uncleared</option>
+                  <option value="1">Cleared</option>
+                  <option value="2">Both</option></select></td>
+</tr> 
+</table></div>
+      
+      
+</div>
+      <!--<div class="row" id="previousTransactions"></div>-->
+      <div class="row hidden-xs hideMobile" id="export">
+      		<form action="/php/export.php" method="get">
+      			<input class="btn btn-danger col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5" value="Export" type="submit">
+      		</form>
+      </div><div class="row spacer"></div>
+    </div>
+    <div id="feedbackTool"></div>
+    <script>
+    var transactionType = "payment"; var currentBalance; var previousBalance;
+    var trRange = "2015-01-01 to "+ getDate();
+    var clRange = "0000-00-00 to " + getDate();
+    var firstLoad =1;
+    var checkFilter = 0;
+    var searchDesc = "";
+    var searchFocus = 0;
+    var amtFocus = 0;
+    var amt_search = "";
+    var categoriesUpdated = 0;
+	var accountInfo= [];
+	var accountID = $("#acct").val();
+	var delay = (function(){
+  		var timer = 0;
+  		return function(callback, ms){
+   			clearTimeout (timer);
+   			timer = setTimeout(callback, ms);
+  		};
+	})();
+
+  function getDate() {
+    var now = new Date();
+    var month = (now.getMonth() + 1);               
+    var day = now.getDate();
+    if(month < 10) 
+        month = "0" + month;
+    if(day < 10) 
+        day = "0" + day;
+    var today = now.getFullYear() + '-' + month + '-' + day;
+  return today;
+        }
+     
+     
+$("#showMore").click(function(){
+  $("form").find(".hideMobile").removeClass("hidden-xs");  
+  $(this).hide();
+  $("#showLess").show();
+  $("#showLess").css("display", "inline-block");
+});
+      
+$("#showLess").click(function(){
+  $("form").find(".hideMobile").addClass("hidden-xs");  
+  $(this).hide();
+  $("#showMore").show();
+});
+      
+function isValidAccountName(newAccountName) {
+        var pattern = new RegExp(/^(([A-z\.\-\, \d]+)([\. ])?)+$/);
+        return pattern.test(newAccountName);
+    };  
+      
+function isValidBalance(newStartingBalance) {
+  var pattern = new RegExp(/^([\-]?(\d+)([\.]?\d{1,2})?)$/);
+  return pattern.test(newStartingBalance);
+};    
+
+$("#payment-button").click(function(){
+    $(this).removeClass("btn-default");
+    $(this).addClass("btn-danger");
+    $("#deposit-button").removeClass("btn-danger");
+    $("#deposit-button").addClass("btn-default");
+    $(".payment").show();
+    $(".deposit").hide();
+    $("#transactionType").val("payment")  
+    transactionType = "payment";
+});
+
+
+$("#deposit-button").click(function(){
+    $(this).removeClass("btn-default");
+    $(this).addClass("btn-danger");
+    $("#payment-button").removeClass("btn-danger");
+    $("#payment-button").addClass("btn-default");
+    $(".deposit").show();
+    $(".payment").hide();
+    transactionType = "deposit";
+    $("#transactionType").val("deposit"); 
+    //console.log(transactionType);
+});
+
+  
+  
+  
+$(document).ready(function() {
+
+      getDate();
+    $('#tr-date').val(getDate()); 
+ });   
+
+$.post('/php/get_user_info.php', function(data) {
+    	var accountInfo = JSON.parse(data);
+    	//var accountInfo = data;
+    	$("#response").html("<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Welcome back, "+accountInfo.Info.email +" !</strong></div>");
+		$("#name").html(accountInfo.Info.name);
+		var accountsCount = Object.keys(accountInfo.Accounts).length;
+		for (var i=0; i<accountsCount; i++){
+			$("#acct").append("<option id = '"+ i +"' value='" + accountInfo.Accounts[i].account_id + "'>"+ accountInfo.Accounts[i].account_name + "</option>");
+		}
+		$("#acct").append("<option value='newAccount' data-toggle='modal' data-target='#myModal'>Add New Account</option>");		
+		var account = $("#acct").children(":selected").attr("id");		
+		accountID = $("#acct").val();
+		var categoriesCount = Object.keys(accountInfo.Categories).length;
+		for (var i=0; i<categoriesCount; i++){
+			$("#cat-all").append("<option value='" +accountInfo.Categories[i].category_id + "'>"+ accountInfo.Categories[i].category_name + "</option>");
+			if (accountInfo.Categories[i].payment_cat == 1 && accountInfo.Categories[i].hide == 0) {
+				$("#cat-p").append("<option value='" +accountInfo.Categories[i].category_id + "'>"+ accountInfo.Categories[i].category_name + "</option>");
+			}
+			if (accountInfo.Categories[i].deposit_cat == 1 && accountInfo.Categories[i].hide == 0) {
+				$("#cat-d").append("<option value='" +accountInfo.Categories[i].category_id + "'>"+ accountInfo.Categories[i].category_name + "</option>");
+			}
+		}
+		$("#cat-p").append("<option value='newCategory' data-toggle='modal' data-target='#categoryModal'>Add New Category</option>");				
+		$("#cat-d").append("<option value='newCategory' data-toggle='modal' data-target='#categoryModal'>Add New Category</option>");				
+		
+		$("#bal").val(numeral(accountInfo.Accounts[account].balance).format('$0,0.00'));
+		$("#cknum").attr("placeholder", accountInfo.Accounts[account].check_number);
+	$("#acct").change(function() {
+		account = $(this).children(":selected").attr("id");
+		accountID = $("#acct").val();
+		if(accountID != "newAccount"){
+   			$("#bal").val(numeral(accountInfo.Accounts[account].balance).format('$0,0.00'));
+			$("#cknum").attr("placeholder", accountInfo.Accounts[account].check_number);
+			getTransactions();
+	 	}
+	});
+	getTransactions();
+
+});
+
+function submitTransactions(){
+	var cleanBalance = numeral().unformat($('#bal').val());
+	if ($('#desc').val()==''){
+		$("#response").html('<div class="alert alert-warning alert-dismissible " role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Please enter a valid Description</strong></div>');
+	}
+	else	if (isValidBalance($('#amt').val()) && $('#amt').val()>0 ) {
+		$.post("/php/submit_transaction.php", {categoryP_ID: $('#cat-p').val(), categoryP:$('#cat-p option:selected').text(), categoryD_ID: $('#cat-d').val(), categoryD:$('#cat-d option:selected').text(), transType: $('#transactionType').val(), acct:$('#acct').val(), transactionDate: $('#tr-date').val(), amount: $('#amt').val(), description:$('#desc').val(), currentBalance: cleanBalance, checkNumber: $('#cknum').val(), clearDate: $('#cl-date').val()}).success(function(data){
+   		 	$("#response").html(data);
+    		getTransactions();
+    		resetForm();
+  		});
+	} else {
+	$("#response").html('<div class="alert alert-warning alert-dismissible " role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Please enter a valid Amount</strong></div>');
+  }
+}
+                                                                   
+$("#submitTransaction").submit(function(e){
+  e.preventDefault();
+  submitTransactions();  
+});   
+
+
+var getTransactions = function(){ 
+$.post('/php/get_transaction_info.php', {account:accountID}, function(data) {
+    	var transactionInfo = JSON.parse(data);
+    	var transactionsCount = Object.keys(transactionInfo.Transactions).length;
+    	//$("#response").html("<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Welcome back, " + data +" !</strong></div>");
+		
+    	$("#balance").val(numeral(transactionInfo.Sum[0].filtered_sum).format('$0,0.00'));
+    	for (var i=0; i < transactionsCount; i++){
+    		var check_number = "";
+    		var date_cleared = transactionInfo.Transactions[i].clear_date;
+    		var amount = numeral(transactionInfo.Transactions[i].amount).format('$0,0.00');
+    		if (transactionInfo.Transactions[i].check_number > 0) {
+    			check_number = transactionInfo.Transactions[i].check_number;
+    		}
+    		if (date_cleared == "0000-00-00"){
+				date_cleared = "";
+			}
+	    	$("#transactionList").append("<tr valign='top' id='tr" + transactionInfo.Transactions[i].transaction_id + "'><td>" + transactionInfo.Transactions[i].transaction_date + "</td><td>" + check_number + "</td><td><input class='clearDate form-control' type='date' name='clear_date[]' value ='" + date_cleared + "' /></td><td class = 'cat"+ transactionInfo.Transactions[i].category_id +"'>" + transactionInfo.Transactions[i].category + "</td><td>" + transactionInfo.Transactions[i].description + "</td><td>" + amount + "</td><td><button id='cleared' class='clrbutton'><span class='glyphicon glyphicon-ok'></span></button></td><td><button id='edit" + transactionInfo.Transactions[i].transaction_id + "'>Edit</button></td></tr>");
+			if (transactionInfo.Transactions[i].cleared == 1) {	    	
+	    		$("#tr"+transactionInfo.Transactions[i].transaction_id).find(".glyphicon-ok").addClass("cleared");
+	    	}
+	    	
+	    	
+	    }
+	    
+});
+}
+
+function resetForm() {
+  $('#amt').val('');
+  $('#desc').val('');
+  $('#cknum').val('');
+  $('#cl-date').val('');
+  //$("#bal").val(numeral(accountInfo.Accounts[account].balance).format('$0,0.00'));
+}        
+
+  </script>
+  </body>
+</html>
